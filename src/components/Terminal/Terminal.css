@@ -1,0 +1,9 @@
+.terminal {
+    width: 50vw;
+    
+    /* height: 10; */
+}
+
+input[type=text] {
+    display: none;
+}
