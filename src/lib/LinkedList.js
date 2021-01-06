@@ -30,7 +30,7 @@ const LinkedList = () => {
 			addLast(node);
 			// Adds at the specified index
 		} else {
-			addAtIndex(node);
+			addAtIndex(node, index);
 		}
 
 		size++;
@@ -63,8 +63,8 @@ const LinkedList = () => {
 
 	const addAtIndex = (node, index) => {
 		let temp = head;
-
-		while (index > 1) {
+		console.log(index);
+		while (+index > 1) {
 			temp = temp.next;
 			index--;
 		}
@@ -79,21 +79,28 @@ const LinkedList = () => {
 
 	const removeIndex = (index) => {
 		let temp = head;
-		if (+index > size) {
+		if (+index > size - 1) {
 			return "Index out of bounds";
-		} else if (+index === 0) {
+		}
+
+		if (+index === 0) {
 			head = head.next;
-			temp = head;
-			head.x = 0;
-			head.y = 0;
+			if (head) {
+				head.x = 0;
+				head.y = 0;
+				shift(head);
+			}
 		} else {
 			while (index > 1) {
 				temp = temp.next;
 				index--;
 			}
+			if (temp.next === tail) {
+				tail = temp;
+			}
 			temp.next = temp.next.next;
+			shift(temp);
 		}
-		shift(temp, temp.next);
 		size--;
 		return "Node has been removed";
 	};
@@ -113,7 +120,7 @@ const LinkedList = () => {
 
 	const print = () => {
 		let node = head;
-		if (!node) return "Empty list"; 
+		if (!node) return "Empty list";
 		let array = [];
 		while (node) {
 			const data = node.data;
@@ -124,7 +131,7 @@ const LinkedList = () => {
 	};
 
 	const shift = (node) => {
-		if (node.next === null) return;
+		if (node && node.next === null) return;
 		determinePosition(node, node.next);
 		return shift(node.next);
 	};
@@ -143,7 +150,7 @@ const LinkedList = () => {
 		head = null;
 		tail = null;
 		size = 0;
-		return "List has been cleared"
+		return "List has been cleared";
 	};
 
 	const getLinks = () => {
@@ -175,7 +182,7 @@ const LinkedList = () => {
 
 	const getSize = () => {
 		return size;
-	}
+	};
 
 	return {
 		private: {
@@ -201,7 +208,7 @@ const LinkedList = () => {
 			size: {
 				func: getSize,
 				description: "size - returns the size of the list",
-			}
+			},
 		},
 	};
 };
