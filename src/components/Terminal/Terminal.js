@@ -1,13 +1,15 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { XTerm } from "xterm-for-react";
+import { FitAddon } from "xterm-addon-fit";
 import "./Terminal.css";
 
 const Terminal = (props) => {
 	const [input, setInput] = useState("");
+	const [fitAddon, setFitAddon] = useState(new FitAddon());
 
-	const xterm = React.useRef(null);
-	const userInput = React.useRef(null);
-	const term = React.useRef("terminal");
+	const xterm = useRef(null);
+	const userInput = useRef(null);
+	// const term = React.useRef("terminal");
 
 	useEffect(() => {
 		const terminal = xterm.current.terminal;
@@ -20,15 +22,16 @@ const Terminal = (props) => {
 			background: "#101010",
 			foreground: "white",
 		});
+		terminal.loadAddon(fitAddon);
 
-		terminal.resize(
-			Math.floor((term.current.clientWidth / fontSize) * 1.6),
-			Math.floor(window.innerHeight / fontSize / 2)
-		);
 		terminal.onKey(keyPressListener);
 
-		terminal.write("Enter 'help' to get list a of commands\n\r")
+		terminal.write("Enter 'help' to get list a of commands\n\r");
 	}, []);
+
+	useEffect(() => {
+		fitAddon.fit();
+	}, [props.windowSize, FitAddon]);
 
 	const keyPressListener = (event) => {
 		const terminal = xterm.current.terminal;
@@ -53,7 +56,7 @@ const Terminal = (props) => {
 	};
 
 	return (
-		<div className="terminal" id="terminal" ref={term}>
+		<div className="terminal" id="terminal">
 			<XTerm ref={xterm} />
 			<input type="text" value={input} ref={userInput} />
 		</div>

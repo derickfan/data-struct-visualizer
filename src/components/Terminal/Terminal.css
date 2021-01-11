@@ -1,9 +1,16 @@
 .terminal {
     width: 50vw;
-    
-    /* height: 10; */
+    height: 100vh;
 }
 
 input[type=text] {
     display: none;
 }
+
+@media only screen and (max-width: 900px) {
+  
+    .terminal {
+      width: 100vw;
+      height: 50vh;
+    }
+  }
