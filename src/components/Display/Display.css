@@ -1,3 +1,13 @@
 .display {
     outline: 1px solid white;
+    width: 50%;
+}
+
+@media only screen and (max-width: 900px) {
+    
+    .display {
+      width: 100%;
+      height: 50vh;
+    }
+
 }
