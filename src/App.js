@@ -15,13 +15,28 @@ const App = () => {
 	const [nodes, setNodes] = useState([]);
 	const [links, setLinks] = useState([]);
 
+	useEffect(() => {
+		const onResize = (event) => {
+			setWindowSize({
+				width: event.target.innerWidth,
+				height: event.target.innerHeight,
+			});
+		};
+
+		window.addEventListener("resize", onResize);
+
+		return () => {
+			window.removeEventListener("resize", onResize);
+		};
+	}, []);
+
 	const runCommand = (command) => {
 		const args = command.trim().split(" ");
 		const func = args.shift();
 		console.log(func);
 		if (!structure) {
 			if (Structure[func]) {
-				setStructure(Structure[func])
+				setStructure(Structure[func]);
 			}
 		} else if (func === "help") {
 			return printFunctions();
@@ -38,18 +53,17 @@ const App = () => {
 	const printFunctions = () => {
 		const funcs = structure.public;
 		console.log(funcs);
-		const arr = Object.keys(funcs)
-			.map((e) => {
-				return funcs[e]["description"];
-			})
+		const arr = Object.keys(funcs).map((e) => {
+			return funcs[e]["description"];
+		});
 		arr.unshift("List of Parameters");
-		return arr.join("\r\n")
+		return arr.join("\r\n");
 	};
 
 	return (
-		<div className="App">
+		<div className="app">
 			<Display nodes={nodes} links={links} windowSize={windowSize} />
-			<Terminal runCommand={runCommand} />
+			<Terminal runCommand={runCommand} windowSize={windowSize} />
 		</div>
 	);
 };
