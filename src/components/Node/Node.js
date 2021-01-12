@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Circle, Text } from "react-konva";
 
 const circleDefaults = {
-    radius: 50,
+    radius: 40,
     fill: "black",
     stroke: "grey",
     strokeWidth: 5,
