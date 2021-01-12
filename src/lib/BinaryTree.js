@@ -122,11 +122,11 @@ const BinaryTree = () => {
 		},
 		public: {
 			add: {
-				func: add,
+				function: add,
 				description: "add {data} - adds the data to the tree",
 			},
 			printInOrder: {
-				func: printInOrder,
+				function: printInOrder,
 				description: "printInOrder - prints the list in order",
 			},
 			printPostOrder: {
@@ -134,15 +134,15 @@ const BinaryTree = () => {
 				description: "printPostOrder - prints the list in post order",
 			},
 			printPreOrder: {
-				func: printPreOrder,
+				function: printPreOrder,
 				description: "printPreOrder - prints the list in pre order",
 			},
 			getRoot: {
-				func: getRoot,
+				function: getRoot,
 				description: "getRoot - gets the root of the list",
 			},
 			clear: {
-				func: clear,
+				function: clear,
 				description: "clear - emptys the tree",
 			},
 		},

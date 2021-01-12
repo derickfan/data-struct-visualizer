@@ -191,22 +191,22 @@ const LinkedList = () => {
 		},
 		public: {
 			add: {
-				func: add,
+				function: add,
 				description:
 					"add {data} - appends the data to the end of the list\n\radd {data} {index} - inserts data at the specified index",
 			},
 			clear: { func: clear, description: "clear - empties the list" },
 			print: {
-				func: print,
+				function: print,
 				description: "print - prints the nodes into an array",
 			},
 			remove: {
-				func: removeIndex,
+				function: removeIndex,
 				description:
 					"remove {index} - removes at node at the specified index",
 			},
 			size: {
-				func: getSize,
+				function: getSize,
 				description: "size - returns the size of the list",
 			},
 		},
