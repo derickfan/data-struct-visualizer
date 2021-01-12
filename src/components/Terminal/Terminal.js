@@ -96,7 +96,8 @@ const Terminal = (props) => {
 		const functions = structure.public;
 		const arr = Object.keys(functions).map((e) => {
 			return functions[e]["description"];
-		});
+		});arr.push("exit - resets the program")
+		
 		arr.unshift("List of Parameters:");
 		return arr.join("\r\n");
 	};
